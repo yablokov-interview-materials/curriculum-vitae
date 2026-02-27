@@ -540,7 +540,15 @@ function updateYearsAndMonths(elementIdPrefix, dateFrom) {
 }
 
 function getHumanReadableYears(integerYears) {
-    switch (integerYears) {
+    const absoluteYears = Math.abs(integerYears);
+    const lastTwoDigits = absoluteYears % 100;
+    const lastDigit = absoluteYears % 10;
+
+    if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
+        return integerYears + " лет";
+    }
+
+    switch (lastDigit) {
         case 1:
             return integerYears + " год";
 
